@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>marup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      background: #f0f8ff;
+    }
+
+    .page {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    #main-page {
+      background-color: Skyblue;
+      color: #336;
+    }
+
+    #share-page {
+      background-color: lightgreen;
+      color: #336;
+    }
+
+    #greeting {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 0.2em;
+    }
+
+    #subline {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    #quote-bg {
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: underline;
+      font-style: italic;
+      margin-top: 1em;
+    }
+
+    button {
+      background-color: red;
+      color: black;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      z-index: 2;
+    }
+
+    button:hover {
+      background-color: darkred;
+      color: white;
+    }
+
+    #share-page h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    /* Sparkly star */
+    .star {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: black;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                  0 0 20px rgba(255, 255, 255, 0.5);
+      animation: fall linear infinite, twinkle ease-in-out infinite;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) scale(1);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 1;
+        filter: brightness(2);
+      }
+    }
+
+    /* Ad Containers */
+    #top-ad, #bottom-ad {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background: #ffffff;
+      z-index: 999;
+    }
+
+    #top-ad {
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #bottom-ad {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Top Ad Section -->
+  <div id="top-ad">
+    <!-- Replace this with your Google AdSense code -->
+    <p>[Top Ad Goes Here]</p>
+  </div>
+
+  <!-- Main Page -->
+  <div id="main-page" class="page">
+    <div id="greeting">Loading...</div>
+    <div id="subline">Have a Good day ✨</div>
+    <div id="quote-bg">"It is never too late to be what you might have been🫡."</div>
+    <button onclick="goToShare()">next👉</button>
+  </div>
+
+  <!-- Share Page -->
+  <div id="share-page" class="page">
+    <h1>Send to your nearby people/family members (if you think that you are a beautiful/hamdsome person)🙃</h1>
+    <button onclick="alert('Shared successfully! you are a beautiful/handsome person 🥰')">Share Now☺️</button>
+  </div>
+
+  <!-- ✅ Bottom Ad Section -->
+  <div id="bottom-ad">
+    <!-- ca-app-pub-8907316139249011/4326535422 -->
+    <p>[Bottom Ad Goes Here]</p>
+  </div>
+
+  <script>
+    function getISTHour() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const istOffset = 5.5 * 60 * 60000;
+      const istTime = new Date(utc + istOffset);
+      return istTime.getHours();
+    }
+
+    function showGreeting() {
+      const hour = getISTHour();
+      let greeting = "";
+
+      if (hour >= 4 && hour < 12) {
+        greeting = "Good Morning 🌅";
+      } else if (hour >= 12 && hour < 15) {
+        greeting = "Good Afternoon 🏖️";
+      } else if (hour >= 15 && hour < 19) {
+        greeting = "Good Evening 🌇";
+      } else {
+        greeting = "Good Night 🌃";
+      }
+
+      document.getElementById("greeting").textContent = greeting;
+    }
+
+    function goToShare() {
+      document.getElementById("main-page").style.display = "none";
+      document.getElementById("share-page").style.display = "flex";
+    }
+
+    function createStars(count = 60) {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = -Math.random() * 100 + "px";
+        star.style.animationDuration = 2 + Math.random() * 3 + "s";
+        star.style.animationDelay = Math.random() * 5 + "s";
+        document.body.appendChild(star);
+      }
+    }
+
+    // Initial Setup
+    document.getElementById("main-page").style.display = "flex";
+    showGreeting();
+    createStars(80);
+  </script>
+</body>
+</html>
