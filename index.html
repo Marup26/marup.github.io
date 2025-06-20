@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>marup</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
       box-sizing: border-box;
@@ -12,10 +12,20 @@
     body, html {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       height: 100%;
-      background: #f0f8ff;
       overflow-x: hidden;
+    }
+
+    .ad-banner {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f2f2f2;
+      position: relative;
+      z-index: 5;
     }
 
     .page {
@@ -23,65 +33,56 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: calc(100vh - 100px); /* 100px for ads */
       text-align: center;
-      padding: 80px 20px 100px;
-      position: relative;
-      z-index: 1;
+      padding: 10px;
     }
 
     #main-page {
-      background-color: #add8e6;
-      color: #003366;
+      background-color: Skyblue;
+      color: #336;
     }
 
     #share-page {
-      background-color: #d4fcd4;
-      color: #003300;
+      background-color: lightgreen;
+      color: #336;
     }
 
     #greeting {
-      font-size: 2.8em;
+      font-size: 2.5em;
       font-weight: bold;
-      margin-bottom: 0.4em;
+      margin-bottom: 0.2em;
     }
 
     #subline {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-bottom: 1em;
     }
 
     #quote-bg {
-      font-size: 1.2em;
-      font-style: italic;
+      font-size: 1.1em;
       font-weight: bold;
       text-decoration: underline;
+      font-style: italic;
       margin-top: 1em;
     }
 
     button {
-      background-color: #ff4d4d;
-      color: white;
+      background-color: red;
+      color: black;
       border: none;
-      padding: 15px 30px;
+      padding: 12px 25px;
       font-size: 1.1em;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 25px;
-      transition: all 0.3s ease;
+      margin-top: 20px;
+      z-index: 2;
     }
 
     button:hover {
-      background-color: #cc0000;
+      background-color: darkred;
     }
 
-    #share-page h1 {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      padding: 0 10px;
-    }
-
-    /* Sparkling stars */
     .star {
       position: absolute;
       width: 6px;
@@ -118,74 +119,49 @@
         filter: brightness(2);
       }
     }
-
-    /* Ad containers */
-    #top-ad, #bottom-ad {
-      width: 100%;
-      text-align: center;
-      background: #ffffff;
-      z-index: 999;
-    }
-
-    #top-ad {
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    #bottom-ad {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
-    }
   </style>
-  <!-- ✅ AdSense JS -->
+
+  <!-- AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 
-  <!-- ✅ Top Ad -->
-  <div id="top-ad">
+  <!-- Top Banner Ad -->
+  <div class="ad-banner">
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:inline-block;width:320px;height:50px"
          data-ad-client="ca-pub-8907316139249011"
-         data-ad-slot="5401364822"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+         data-ad-slot="5401364822"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- ✅ Main Greeting Page -->
+  <!-- Main Page -->
   <div id="main-page" class="page">
     <div id="greeting">Loading...</div>
     <div id="subline">Have a Good day ✨</div>
-    <div id="quote-bg">"It is never too late to be what you might have been 🫡."</div>
-    <button onclick="goToShare()">Next 👉</button>
+    <div id="quote-bg">"It is never too late to be what you might have been🫡."</div>
+    <button onclick="goToShare()">next👉</button>
   </div>
 
-  <!-- ✅ Share Page -->
-  <div id="share-page" class="page">
-    <h1>Send to your nearby people/family members (if you think that you are a beautiful/handsome person) 🙃</h1>
-    <button onclick="shareWebsite()">Share Now ☺️</button>
+  <!-- Share Page -->
+  <!-- Share Page -->
+<div id="share-page" class="page">
+  <h1>Send to your nearby people/family members (if you think that you are a beautiful/handsome person)🙃</h1>
+  <button onclick="copyLink()">Copy Link 📋</button>
+  <br><br>
+  <button onclick="shareWhatsApp()">Share on WhatsApp 💬</button>
+  <br><br>
+  <button onclick="shareTelegram()">Share on Telegram 📢</button>
+
   </div>
 
-  <!-- ✅ Bottom Ad -->
-  <div id="bottom-ad">
+  <!-- Bottom Banner Ad -->
+  <div class="ad-banner">
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:inline-block;width:320px;height:50px"
          data-ad-client="ca-pub-8907316139249011"
-         data-ad-slot="4326535422"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+         data-ad-slot="4326535422"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <script>
@@ -220,21 +196,15 @@
     }
 
     function shareWebsite() {
-      const url = "https://marup26.github.io/marup.github.io/";
-      if (navigator.share) {
-        navigator.share({
-          title: "Check this out!",
-          text: "I found this cool page 😍",
-          url: url
-        }).catch((err) => alert("Could not share: " + err));
-      } else {
-        navigator.clipboard.writeText(url).then(() => {
-          alert("Link copied! Share with your friends 🥰");
-        });
-      }
+      const link = "https://marup26.github.io/marup.github.io/";
+      navigator.clipboard.writeText(link).then(() => {
+        alert("Link copied! Share this: " + link);
+      }).catch(() => {
+        alert("Link: " + link);
+      });
     }
 
-    function createStars(count = 80) {
+    function createStars(count = 60) {
       for (let i = 0; i < count; i++) {
         const star = document.createElement("div");
         star.classList.add("star");
@@ -246,10 +216,9 @@
       }
     }
 
-    // Initialize
     document.getElementById("main-page").style.display = "flex";
     showGreeting();
     createStars();
   </script>
 </body>
-  </html>
+    </html>
