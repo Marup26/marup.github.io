@@ -33,7 +33,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      min-height: calc(100vh - 100px); /* 100px for ads */
+      min-height: calc(100vh - 100px);
       text-align: center;
       padding: 10px;
     }
@@ -75,8 +75,7 @@
       font-size: 1.1em;
       border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
-      z-index: 2;
+      margin: 10px;
     }
 
     button:hover {
@@ -126,7 +125,7 @@
 </head>
 <body>
 
-  <!-- Top Banner Ad -->
+  <!-- Top Ad -->
   <div class="ad-banner">
     <ins class="adsbygoogle"
          style="display:inline-block;width:320px;height:50px"
@@ -140,16 +139,18 @@
     <div id="greeting">Loading...</div>
     <div id="subline">Have a Good day ✨</div>
     <div id="quote-bg">"It is never too late to be what you might have been🫡."</div>
-    <button onclick="goToShare()">next👉</button>
+    <button onclick="goToShare()">Next 👉</button>
   </div>
 
   <!-- Share Page -->
   <div id="share-page" class="page">
-    <h1>Send to your nearby people/family members (if you think that you are a beautiful/handsome person)🙃</h1>
-    <button onclick="shareWebsite()">Share Now ☺️</button>
+    <h1>Share if you think you're a beautiful/handsome person 😄</h1>
+    <button onclick="copyLink()">📋 Copy Website Link</button>
+    <button onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+    <button onclick="shareTelegram()">📢 Share on Telegram</button>
   </div>
 
-  <!-- Bottom Banner Ad -->
+  <!-- Bottom Ad -->
   <div class="ad-banner">
     <ins class="adsbygoogle"
          style="display:inline-block;width:320px;height:50px"
@@ -189,13 +190,23 @@
       document.getElementById("share-page").style.display = "flex";
     }
 
-    function shareWebsite() {
+    function copyLink() {
       const link = "https://marup26.github.io/marup.github.io/";
       navigator.clipboard.writeText(link).then(() => {
         alert("Link copied! Share this: " + link);
       }).catch(() => {
         alert("Link: " + link);
       });
+    }
+
+    function shareWhatsApp() {
+      const msg = encodeURIComponent("Check this out! 👉 https://marup26.github.io/marup.github.io/");
+      window.open("https://wa.me/?text=" + msg, "_blank");
+    }
+
+    function shareTelegram() {
+      const msg = encodeURIComponent("Check this out! 👉 https://marup26.github.io/marup.github.io/");
+      window.open("https://t.me/share/url?url=" + msg, "_blank");
     }
 
     function createStars(count = 60) {
@@ -215,4 +226,4 @@
     createStars();
   </script>
 </body>
-      </html>
+    </html>
